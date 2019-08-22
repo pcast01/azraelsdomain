@@ -1,11 +1,9 @@
 import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { FaCheckCircle } from "react-icons/fa"
 import "./index.css"
-
 import Sidebar from "../components/sidebar/Sidebar"
-import TechTag from "../components/tags/TechTag"
+import paul from "../images/paul.jpg"
 
 const AboutPage = props => {
   return (
@@ -19,89 +17,37 @@ const AboutPage = props => {
         <div className="post-main">
           <SEO title="About" />
           <div className="mt-3">
-            <h2 className="heading">About</h2>
+            <img src={paul} style={{ maxWidth: `200px` }} alt="me" />
+            <h2 className="heading">About Me</h2>
             <p>
-              <i>
-                Currently I am working as a .Net Full Stack Developer with a
-                passion to improve technology in order to achieve excellence. I
-                have a Bachelors in Computer Science and have pursued knowledge
-                of technology all my life and love to automate processes and
-                creatively solve problems.
+              <i style={{ fontSize: "22px" }}>
+                Currently I am working as a .Net Full Stack Developer/React Dev
+                with a passion to improve technology in order to achieve
+                excellence. I have a Bachelors in Computer Science and have
+                pursued knowledge of technology all my life. I love to automate
+                processes and creatively solve problems.
               </i>
             </p>
             <br />
-            {/* <h4>Features</h4>
-            <div>
-              <span className="text-success d-inline-block" title="blazing">
-                <FaCheckCircle size={26} style={{ color: "success" }} />
-              </span>
-              <p className="d-inline-block ml-3 w-75 align-top">
-                Blazing fast, as you'd expect from a Gatsby site
-              </p>
-            </div>
-            <div>
-              <span className="text-success d-inline-block" title="tags">
-                <FaCheckCircle size={26} style={{ color: "success" }} />
-              </span>
-              <p className="d-inline-block ml-3 w-75 align-top">
-                Tech tags designed for web developers
-              </p>
-              <div className="ml-5">
-                <TechTag
-                  tag="react"
-                  tech="React"
-                  name="DiReact"
-                  size={20}
-                  color="deepskyblue"
-                />
-                <TechTag
-                  tag="nodejs"
-                  tech="Node.js"
-                  name="DiNodejsSmall"
-                  size={20}
-                  color="lightgreen"
-                />
-                <TechTag
-                  tag="html"
-                  tech="HTML"
-                  name="FaHtml5"
-                  size={20}
-                  color="darkorange"
-                />
-                <TechTag
-                  tag="css"
-                  tech="CSS"
-                  name="DiCss3Full"
-                  size={20}
-                  color="teal"
-                />
-              </div>
-            </div>
-            <div className="mt-4">
-              <span className="text-success d-inline-block" title="prism">
-                <FaCheckCircle size={26} style={{ color: "success" }} />
-              </span>
-              <p className="d-inline-block ml-3 w-75 align-top">
-                Includes Prism for code block styling in markdown files
-              </p>
-            </div>
-            <div>
-              <span className="text-success d-inline-block" title="icons">
-                <FaCheckCircle size={26} style={{ color: "success" }} />
-              </span>
-              <p className="d-inline-block ml-3 w-75 align-top">
-                Developer-relevant social-media icon links including GitHub,
-                Stack Overflow and freeCodeCamp
-              </p>
-            </div>
-            <div>
-              <span className="text-success d-inline-block" title="mobile">
-                <FaCheckCircle size={26} style={{ color: "success" }} />
-              </span>
-              <p className="d-inline-block ml-3 w-75 align-top">
-                Mobile responsive, of course
-              </p>
-            </div> */}
+            <h3>TL;DR</h3>
+            <ul>
+              <li>
+                <span role="img">🥇</span> Over 10 years of Web Developer
+                experience
+              </li>
+              <li>
+                <span role="img">💯</span> Solving tech problems is my thing
+              </li>
+              <li>
+                <span role="img">🙌</span> Javascript/React
+              </li>
+              <li>
+                <span role="img">🤘</span> Metal music is life
+              </li>
+              <li>
+                <span role="img">🏍️</span> Motorcycle Enthusiast
+              </li>
+            </ul>
           </div>
         </div>
       </div>

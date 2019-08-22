@@ -1,6 +1,6 @@
 ---
 title: "PowerShell with Microsoft Excel Macro"
-tags: ["PowerShell"]
+tags: ["powershell", "excel"]
 published: true
 date: "2017-01-17"
 ---

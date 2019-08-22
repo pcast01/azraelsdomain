@@ -57,7 +57,7 @@ const Sidebar = () => {
               bio={data.site.siteMetadata.bio}
             />
             <SocialLinks contacts={data.site.siteMetadata.contacts} />
-            <div className="page-links">
+            <div className="page-links" style={{ marginTop: "80px" }}>
               <Link to="/">
                 <span className="text-dark d-block py-1">Blog Home</span>
               </Link>
