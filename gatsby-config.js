@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 const siteConfig = require("./config")
 
@@ -9,11 +9,12 @@ module.exports = {
     tagline: siteConfig.tagline,
     description: `A blog template for web developers that's ready to go out of the box. Feel free to modify it to your liking.`,
     author: siteConfig.author.name,
+    bio: siteConfig.author.bio,
     contacts: {
-      linkedin: siteConfig.author.contacts.linkedin,
       github: siteConfig.author.contacts.github,
+      reddit: siteConfig.author.contacts.reddit,
+      youtube: siteConfig.author.contacts.youtube,
       stackoverflow: siteConfig.author.contacts.stackoverflow,
-      freecodecamp: siteConfig.author.contacts.freecodecamp,
       twitter: siteConfig.author.contacts.twitter,
     },
     labels: siteConfig.labels,
@@ -46,19 +47,27 @@ module.exports = {
               aliases: {},
               showLineNumbers: false,
               noInlineHighlight: false,
-            }
-          }, `gatsby-remark-responsive-iframe`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+          `gatsby-remark-responsive-iframe`,
         ],
       },
     },
+
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
           `Raleway`,
-          `source sans pro\:300,400,400i,700` // you can also specify font weights and styles
-        ]
-      }
+          `source sans pro\:300,400,400i,700`, // you can also specify font weights and styles
+        ],
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -71,7 +80,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/profile.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

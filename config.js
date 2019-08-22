@@ -2,19 +2,20 @@
 
 module.exports = {
   url: "https://developer-diary.netlify.com",
-  title: "Developer Diary",
-  tagline: "Autodidact developer and sometimes hoop-jumper",
-  copyright: "© 2019 willjw3, All rights reserved",
+  title: "Domain of Azrael",
+  tagline: "All things programming and scripting",
+  copyright: "© 2019 Paul Castillo, All rights reserved",
   author: {
-    name: "WILL JAY",
-    bio: "Self-taught web developer and whisky aficionado",
+    name: "PAUL CASTILLO",
+    bio:
+      "Developer, Husband, Father, Drummer, Amateur Astronomer, Air Force Veteran",
     contacts: {
+      reddit: "https://www.reddit.com/user/pcast01",
       linkedin: "https://www.linkedin.com/in/will-ward-65234a170/",
-      github: "https://github.com/willjw3",
-      stackoverflow:
-        "https://stackoverflow.com/users/10262432/will-ward?tab=profile",
-      freecodecamp: "https://www.freecodecamp.org/willjw3",
-      twitter: "https://twitter.com/willjw3",
+      github: "https://github.com/pcast01",
+      stackoverflow: "https://stackoverflow.com/users/436108/paul",
+      twitter: "https://twitter.com/pcast01",
+      youtube: "https://www.youtube.com/user/pcast01",
     },
   },
   labels: [
@@ -53,34 +54,34 @@ module.exports = {
       size: 20,
       color: "teal",
     },
-    {
-      tag: "python",
-      tech: "Python",
-      name: "DiPython",
-      size: 20,
-      color: "deepskyblue",
-    },
-    {
-      tag: "ruby",
-      tech: "Ruby",
-      name: "DiRuby",
-      size: 20,
-      color: "crimson",
-    },
-    {
-      tag: "java",
-      tech: "Java",
-      name: "FaJava",
-      size: 20,
-      color: "wheat",
-    },
-    {
-      tag: "angular",
-      tech: "Angular",
-      name: "DiAngularSimple",
-      size: 20,
-      color: "red",
-    },
+    // {
+    //   tag: "python",
+    //   tech: "Python",
+    //   name: "DiPython",
+    //   size: 20,
+    //   color: "deepskyblue",
+    // },
+    // {
+    //   tag: "ruby",
+    //   tech: "Ruby",
+    //   name: "DiRuby",
+    //   size: 20,
+    //   color: "crimson",
+    // },
+    // {
+    //   tag: "java",
+    //   tech: "Java",
+    //   name: "FaJava",
+    //   size: 20,
+    //   color: "wheat",
+    // },
+    // {
+    //   tag: "angular",
+    //   tech: "Angular",
+    //   name: "DiAngularSimple",
+    //   size: 20,
+    //   color: "red",
+    // },
     {
       tag: "html",
       tech: "HTML",
@@ -108,6 +109,13 @@ module.exports = {
       name: "DiVisualstudio",
       size: 20,
       color: "deepskyblue",
+    },
+    {
+      tag: "powershell",
+      tech: "Powershell",
+      name: "DiWindows",
+      size: 20,
+      color: "green",
     },
   ],
 }
