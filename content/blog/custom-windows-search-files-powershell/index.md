@@ -5,15 +5,12 @@ published: true
 date: "2016-12-26"
 ---
 
-![powershell ISE](../../../src/images/poshBlue.jpg)
-
-## Custom Windows Search
-
-I recently worked on a project where I was tasked to create a custom search for a client and he wanted a specific search that would
-look at 1 text file filled with windows path locations and 1 text file that has specific words to search for.
+<br />
+<p>I recently worked on a project where I was tasked to create a custom search for a client and he wanted a specific search that would
+look at 1 text file filled with windows path locations and 1 text file that has specific words to search for.</p>
 
 Here is the script:
-{% gist 1593a0f632fa36765a100f085ea81015 %}
+`gist:pcast01/1593a0f632fa36765a100f085ea81015`
 
 ## Breakdown of script
 
@@ -113,21 +110,21 @@ I print the results of this in the line "$resultsFile" then I get the count of f
 
 ```powershell
 foreach ($folder in $folders) {
-$files = gci -Path $folder -Recurse _._
-Write-Host "Searching folder: $folder -------------------------"
-    $file = \$file + "\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*`r`nSearching folder: \$folder`r`n**\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***`r`n"
-foreach ($pattern in $patterns) {
-$resultsFile  = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue |
-Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") } |
-Select-Object @{Name="Folder";Expression={$_.Directory}},@{Name="FileName";Expression={$*.Name}} ,
-@{Name="Size";Expression={Format-FileSize(\$_.Length)}}, @{Name="Last Modified Date";Expression={\$_.LastWriteTime}},
-@{Name="Owner";Expression={(Get-acl $\_.FullName).Owner}} | Format-Table -AutoSize _ | Out-String -Width 4096
-$rNumbers = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue | Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "\*$pattern\*") }
-$resultsFile
-$rCount = $rNumbers.Count
-Write-Host "Count: $rCount"
-$file = \$file + "=========== Searching for \\\$pattern ===========`r`n\*\*Number of Files found: $rCount`r`n`r`n" + $resultsFile
-}
+    $files = gci -Path $folder -Recurse _._
+    Write-Host "Searching folder: $folder -------------------------"
+        $file = \$file + "\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*`r`nSearching folder: \$folder`r`n**\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***`r`n"
+    foreach ($pattern in $patterns) {
+        $resultsFile  = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue |
+        Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") } |
+        Select-Object @{Name="Folder";Expression={$_.Directory}},@{Name="FileName";Expression={$*.Name}} ,
+        @{Name="Size";Expression={Format-FileSize(\$_.Length)}}, @{Name="Last Modified Date";Expression={\$_.LastWriteTime}},
+        @{Name="Owner";Expression={(Get-acl $\_.FullName).Owner}} | Format-Table -AutoSize _ | Out-String -Width 4096
+        $rNumbers = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue | Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "\*$pattern\*") }
+        $resultsFile
+        $rCount = $rNumbers.Count
+        Write-Host "Count: $rCount"
+        $file = \$file + "=========== Searching for \\\$pattern ===========`r`n\*\*Number of Files found: $rCount`r`n`r`n" + $resultsFile
+    }
 }
 ```
 

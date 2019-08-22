@@ -5,14 +5,12 @@ published: true
 date: "2016-12-26"
 ---
 
-![powershell ISE](../../../src/images/poshBlue.jpg)
+<br/>
 
-# Custom Windows Search
-
-I decided that I needed to start using resources around me better to write better PowerShell. So I posted the code on the [PowerShell Sub-Reddit](https://www.reddit.com/r/PowerShell/) and I got some great advice from user [Lee_Dailey](https://www.reddit.com/user/Lee_Dailey) [grin] on my post - [Custom Windows File and Pattern Search in PowerShell script](https://www.reddit.com/r/PowerShell/comments/5l6nux/custom_windows_file_and_pattern_search_in/).
+I decided that I needed to start using resources around me better to write better PowerShell. So I posted the code on the [PowerShell Sub-Reddit](https://www.reddit.com/r/PowerShell/) and I got some great advice from user [Lee_Dailey](https://www.reddit.com/user/Lee_Dailey) on my post - [Custom Windows File and Pattern Search in PowerShell script](https://www.reddit.com/r/PowerShell/comments/5l6nux/custom_windows_file_and_pattern_search_in/).
 
 Here is the updated full script:
-{% gist 6f3fd24642748c2f47f15ed8c5bc39b9 %}
+`gist:pcast01/6f3fd24642748c2f47f15ed8c5bc39b9`
 
 ## Breakdown of script
 
@@ -21,7 +19,7 @@ I modified the first helper function for formatting the size of the file to be a
 Here is the original function.
 **Format-FileSize** function takes one integer that is the Length property of a file and formats it according to its size. i.e. _1KB, 1MB..._
 
-```powershell
+```powershell{numberLines: true}
 Function Format-FileSize() {
     Param ([int]$size)
     If     ($size -gt 1TB) {[string]::Format("{0:0.00} TB", $size / 1TB)}
@@ -47,7 +45,7 @@ its better to use the [PowerShell format operator](http://ss64.com/ps/syntax-f-o
 
 The new function Format-FileSize:
 
-```powershell
+```powershell{numberLines: true}
 Function Format-FileSize {
     Param ([int64]$size)
 
@@ -76,7 +74,7 @@ Function Format-FileSize {
 
 This is the opening screen for the script which shows the PowerShell Version from the start and then I do a `Read-Host` to show this header for the script.
 
-```powershell
+```powershell{numberLines: true}
 $ver = $psversiontable.psversion
 Write-Host "PowerShell version: $ver"
 Write-Host "Script Mission: takes a list of locations to search and looks at another "
@@ -90,7 +88,7 @@ $startScript = Read-Host -Prompt 'Hit enter to continue'
 
 Here is the _updated script menu_.
 
-```powershell
+```powershell{numberLines: true}
 $ver = $psversiontable.psversion
 Write-Host "PowerShell version: $ver"
 Write-Host "Script Mission: Custom filename search that requires two text files, "
@@ -109,7 +107,7 @@ $startScript = Read-Host -Prompt 'Hit enter to continue'
 The next part I found some code that will open the BrowseForFolder dialog windows that allows you to navigate to the folder
 where the locations and patterns text files are located. Then it checks if both files exists if not then it exits the script.
 
-```powershell
+```powershell{numberLines: true}
 $application = New-Object -ComObject Shell.Application
 $path = ($application.BrowseForFolder(0, 'Select root folder of new WebSite', 0)).Self.Path
 
@@ -139,7 +137,7 @@ Retrieve-FilesByPatternLocation -path $path
 
 The original setup of the 2 `foreach` loops were at best messy and not streamlined.
 
-```powershell
+```powershell{numberLines: true}
 foreach ($folder in $folders) {
     $files = gci -Path $folder -Recurse *.*
     Write-Host "Searching folder: $folder -------------------------"
@@ -163,7 +161,7 @@ The new `foreach` loops. Right away the readability is greatly improved. I chang
 
 This is the best part that benefited the most of this deep dive in my opinion. Before I got sloppy and was trying to get the script done fast as I was on a deadline. But because of this I ran `Get-ChildItem` twice and poor performance was had. Maybe not real bad since my script is small but I have seen a noticeable difference. I also didn't do my homework when studying `Get-ChildItem` because if I did I would've known that there are two parameters that it takes that I was using after I piped the data. And those two are `-Folder` and `-Filter`. I was using `Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*")`. I also get the count of the files found before I pipe the results to the `Select-Object`.
 
-```powershell
+```powershell{numberLines: true}
 # Perform recurse filter search and get file count
 $Results = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue -File -Filter "*$pattern*"
 $FilesCount = $Results.Count
@@ -171,7 +169,7 @@ $FilesCount = $Results.Count
 
 Updated foreach code block
 
-```powershell
+```powershell{numberLines: true}
 foreach ($folder in $AllFolders) {
     # Write folder name to screen
     Write-Host "Searching folder: $folder -------------------------"
@@ -212,26 +210,26 @@ On the `Select-Object` I separated the code to look nicer and show you all the c
 
 Old Code:
 
-```powershell
-    $file | Out-File results.txt
+```powershell{numberLines: true}
+$file | Out-File results.txt
 
-    Clear-Variable -name file
-    Clear-Variable -Name resultsFile
+Clear-Variable -name file
+Clear-Variable -Name resultsFile
 
-    .\Results.txt
+.\Results.txt
 ```
 
 New Code:
 
-```powershell
-    # Send all results information to results.txt File.
-    $Message | Out-File "$Path\Results.txt"
+```powershell{numberLines: true}
+# Send all results information to results.txt File.
+$Message | Out-File "$Path\Results.txt"
 
-    # Clear Variables from memory
-    Clear-Variable -Name Results
+# Clear Variables from memory
+Clear-Variable -Name Results
 
-    # Open Results text file in Notepad
-    Invoke-Item "$Path\Results.txt"
+# Open Results text file in Notepad
+Invoke-Item "$Path\Results.txt"
 ```
 
 Here I changed all the paths to explicitly state where everything is going instead of assuming that PowerShell is in the right directory. I also reduced the `Clear-Variable` command to one time call since I cleaned up the code earlier. If I don't clear this variable then if I run the function again it just adds to this variable and I get two sets of results in one. Finally, I explicitly call `Invoke-Item` to open the Result.txt file with the Path in the call as well.
@@ -240,7 +238,7 @@ Here I changed all the paths to explicitly state where everything is going inste
 
 I got another tip from Reddit User <a href="https://www.reddit.com/user/TheHobbitsGiblets" target="_blank">TheHobbitsGiblets</a> and it was a good one! I have never heard of this feature but I am loving it, it shaved my code down from 16 to 6 lines of code!! Without further ado, here is the code. So before even starting the function I check the `$Path` variable and also check to see if both the locations.txt and patterns.txt file exist. If they do then the script will run if not then I throw a default PowerShell error with the appropriate message.
 
-```powershell
+```powershell{numberLines: true}
 param (
     [Parameter(Mandatory=$true)]
     [ValidateScript({
@@ -256,7 +254,7 @@ param (
 
 When this is ran and the path is not correct and the Locations and Patterns text file.
 
-```powershell
+```powershell{numberLines: true}
 Retrieve-FilesByPatternLocation : Cannot validate argument on parameter 'Path'. The path is invalid or Locations.txt/Patterns.txt
  files are missing.
  At line:1 char:39
@@ -266,7 +264,7 @@ Retrieve-FilesByPatternLocation : Cannot validate argument on parameter 'Path'. 
 
 I was doing it wrong and now I am saving space in my function and being more efficient as you can see I was using aliases and using .Net code and multiple if statements.
 
-```powershell
+```powershell{numberLines: true}
 if([string]::IsNullOrEmpty($path))
 {
     Write-Host "Exiting script..."

@@ -14,7 +14,7 @@ Rules:
 
 ### Data
 
-```javascript
+```javascript{numberLines: true}
 const data = [
   {
     name: "Superman",
@@ -60,7 +60,7 @@ const data = [
 
 ## Solution
 
-```javascript
+```javascript{numberLines: true}
 const iceCreamTotals = data.reduce((totals, superhero) => {
   superhero.favoriteIceCreams.map(iceCreamType => {
     totals[iceCreamType] = (totals[iceCreamType] || 0) + 1
@@ -81,7 +81,7 @@ So naturally, I googled some ways to try to solve this problem and I came across
 
 Here is the code:
 
-```javascript
+```javascript{numberLines: true}
 const fruitBasket = [
   "banana",
   "cherry",
@@ -123,7 +123,7 @@ if `tally[Banana]` exists then take its value (which is zero at the moment) and 
 
 So my problem was that I had an object that had an array inside of each property. So in order to stay inside the rules of the problem I had to get the tally of the array inside of the object using the [.map function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
 
-```javascript
+```javascript{numberLines: true}
 superhero.favoriteIceCreams.map(iceCreamType => {
   totals[iceCreamType] = (totals[iceCreamType] || 0) + 1
   return iceCreamType
@@ -132,7 +132,7 @@ superhero.favoriteIceCreams.map(iceCreamType => {
 
 the key to this working was totals Accumulator variable. I had to reference a variable outside of the map function and it works because that object lives inside the reduce function. Normally the [.map function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) returns a new array but I don't need that object I just needed to iterate through every item in the array. So all said and done I just return totals and that is all that is needed.
 
-```javascript
+```javascript{numberLines: true}
 const iceCreamTotals = data.reduce((totals, superhero) => {
     ...
 

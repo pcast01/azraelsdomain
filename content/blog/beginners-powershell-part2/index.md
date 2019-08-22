@@ -59,7 +59,7 @@ Sum 1 2
 3
 ```
 
-The syntax of a function is important to learn to do correctly. When declaring parameters it is crucial that you put the \$ dollar sign in front of every parameter. Also you can optionally declare the type of variable and in this case I have declared both the parameters as integers.
+The syntax of a function is important to learn to do correctly. When declaring parameters it is crucial that you put the `$` dollar sign in front of every parameter. Also you can optionally declare the type of variable and in this case I have declared both the parameters as integers.
 
 Here is the exact same function but without declaring the type for the parameters and it achieves the same result.
 
@@ -136,10 +136,10 @@ When you use this above your declared parameter then the function requires you t
 
 In this example we have set both parameters to be mandatory.
 
-```powershell
+```powershell{numberLines: true}
 function Sum {
 param(
-    [Parameter(Mandatory=\$true)][int]$firstNumber,
+    [Parameter(Mandatory=$true)][int]$firstNumber,
     [Parameter(Mandatory=$true)][int]$secondNumber
 )
 
