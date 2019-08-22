@@ -9,7 +9,7 @@ const Bio = ({ author, bio, tagline }) => {
         src={azrael}
         style={{ maxWidth: `100px` }}
         className="profile-img"
-        alt=""
+        alt="Azrael"
       />
       <h3 className="mt-2 author-bio">{author}</h3>
       <p>{bio}</p>
