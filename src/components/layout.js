@@ -26,6 +26,8 @@ const Layout = ({ children }) => {
                 github
                 stackoverflow
                 twitter
+                reddit
+                youtube
               }
             }
           }
@@ -51,7 +53,7 @@ const Layout = ({ children }) => {
               <hr />
               <p className="d-inline">
                 © {new Date().getFullYear()}{" "}
-                <a className="text-info" href="https://willjw3.github.io/">
+                <a className="text-info" href="https://pcast01.github.io/">
                   pcast01
                 </a>
                 , All Rights Reserved.

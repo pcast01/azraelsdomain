@@ -8,7 +8,6 @@ import {
 } from "react-icons/fa"
 
 const SocialLinks = ({ contacts }) => {
-  console.log("social", contacts)
   return (
     <div className="social-links float-right mr-4">
       <a className="text-primary ml-4" href={contacts.reddit}>
