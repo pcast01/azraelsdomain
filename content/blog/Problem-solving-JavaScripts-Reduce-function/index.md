@@ -1,6 +1,6 @@
 ---
 title: "Problem solving JavaScript's Reduce function - just one of many use cases to utilize Reduce"
-tags: [javascript]
+tags: ["javascript"]
 published: true
 date: "2018-02-26"
 ---

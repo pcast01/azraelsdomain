@@ -1,5 +1,5 @@
 ---
-title: How to create your own Google Sheets Custom Function
+title: "How to create your own Google Sheets Custom Function"
 tags: ["javascript", "googlesheets", "script"]
 published: true
 date: "2017-06-29"
@@ -187,4 +187,4 @@ Creating a custom function will give you flexibility to create whatever you want
 
 - Gist script
 
-`gist:pcast01/58177141dd9aaef6cbc58aa1790d9401#syntax.text`
+`gist:pcast01/58177141dd9aaef6cbc58aa1790d9401`
