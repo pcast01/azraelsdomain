@@ -3,7 +3,7 @@
 module.exports = {
   url: "https://developer-diary.netlify.com",
   title: "Domain of Azrael",
-  tagline: "All things programming and scripting",
+  tagline: "A Blog Dedicated To All Things Programming and Scripting!",
   copyright: "© 2019 Paul Castillo, All rights reserved",
   author: {
     name: "PAUL CASTILLO",

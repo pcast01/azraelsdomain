@@ -24,28 +24,28 @@ const AboutPage = props => {
                 Currently I am working as a .Net Full Stack Developer/React Dev
                 with a passion to improve technology in order to achieve
                 excellence. I have a Bachelors in Computer Science and have
-                pursued knowledge of technology all my life and love to automate
+                pursued knowledge of technology all my life. I love to automate
                 processes and creatively solve problems.
               </i>
             </p>
             <br />
-            <h3>TLDR;</h3>
+            <h3>TL;DR</h3>
             <ul>
               <li>
-                <span role="img">👍</span> Over 10 years of Web Developer
+                <span role="img">🥇</span> Over 10 years of Web Developer
                 experience
               </li>
               <li>
-                <span role="img">🔥</span> Solving tech problems are my thing
+                <span role="img">💯</span> Solving tech problems is my thing
               </li>
               <li>
-                <span role="img">💙</span> Javascript/React
+                <span role="img">🙌</span> Javascript/React
               </li>
               <li>
-                <span role="img">🥁</span> Metal music
+                <span role="img">🤘</span> Metal music is life
               </li>
               <li>
-                <span role="img">🏍️</span> Motorcycling is fun!
+                <span role="img">🏍️</span> Motorcycle Enthusiast
               </li>
             </ul>
           </div>
