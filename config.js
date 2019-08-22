@@ -1,7 +1,7 @@
 "use strict"
 
 module.exports = {
-  url: "https://developer-diary.netlify.com",
+  url: "https://azraelsdomain.tech",
   title: "Domain of Azrael",
   tagline: "A Blog Dedicated To All Things Programming and Scripting!",
   copyright: "© 2019 Paul Castillo, All rights reserved",
