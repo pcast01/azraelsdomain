@@ -1,6 +1,7 @@
 ---
 title: "Things I have done with Powershell"
 published: true
+tags: ["powershell"]
 date: "2019-08-23"
 ---
 
