@@ -5,8 +5,6 @@ tags: ["powershell"]
 date: "2019-08-23"
 ---
 
-## Things I have done in Powershell
-
 * Create winform Gui to create a dropdown to select a floor and room that is pulled from Excel and then when the Floor/Room is selected then the printers nearest you will be installed onto the same computer.
 * Custom file search based on list in a text file
 * AD work - Get all last logged in date for all users, Get all users that are Disabled and are locked out, Retrieve the users that have not changed their password within 90 days.
