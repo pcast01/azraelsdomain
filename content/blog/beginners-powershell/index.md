@@ -7,7 +7,7 @@ date: "2016-11-06"
 
 ![powershell ISE](../../../src/images/poshBlack.jpg)
 
-> If you repeat it, PowerShell it.
+>If you repeat it, PowerShell it.
 
 I like making my everyday job easier so scripting repeat things I do every day is key for me. I found that if I am typing something more than once a day I might as well create a script to automate this process.
 Some ways that I use PowerShell everyday is for instance:

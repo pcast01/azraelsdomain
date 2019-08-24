@@ -124,5 +124,19 @@ module.exports = {
       size: 20,
       color: "darkgreen",
     },
+    {
+      tag: "pi",
+      tech: "Raspberry PI",
+      name: "DiRasberryPi",
+      size: 20,
+      color: "maroon",
+    },
+    {
+      tag: "net",
+      tech: "C#",
+      name: "DiNetmagazine",
+      size: 20,
+      color: "green",
+    },
   ],
 }

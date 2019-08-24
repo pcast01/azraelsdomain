@@ -25,7 +25,7 @@ When you create a custom function you have full control over the input and outpu
 
 - The purpose of this function is to bring two columns together as one string and return that to the cell where you input the function.
 
-```javascript
+```js
 /** Brings two columns of strings together.
  *
  * @param {string} First string.

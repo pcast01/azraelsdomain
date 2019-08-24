@@ -5,14 +5,13 @@ published: true
 date: "2016-12-26"
 ---
 
-![powershell ISE](../../../src/images/poshBlue.jpg)
+<br/>
 
-# Custom Windows Search
-
-I decided that I needed to start using resources around me better to write better PowerShell. So I posted the code on the [PowerShell Sub-Reddit](https://www.reddit.com/r/PowerShell/) and I got some great advice from user [Lee_Dailey](https://www.reddit.com/user/Lee_Dailey) [grin] on my post - [Custom Windows File and Pattern Search in PowerShell script](https://www.reddit.com/r/PowerShell/comments/5l6nux/custom_windows_file_and_pattern_search_in/).
+I decided that I needed to start using resources around me better to write better PowerShell. So I posted the code on the [PowerShell Sub-Reddit](https://www.reddit.com/r/PowerShell/) and I got some great advice from user [Lee_Dailey](https://www.reddit.com/user/Lee_Dailey) on my post - [Custom Windows File and Pattern Search in PowerShell script](https://www.reddit.com/r/PowerShell/comments/5l6nux/custom_windows_file_and_pattern_search_in/).
 
 Here is the updated full script:
-{% gist 6f3fd24642748c2f47f15ed8c5bc39b9 %}
+
+`gist:pcast01/6f3fd24642748c2f47f15ed8c5bc39b9`
 
 ## Breakdown of script
 
@@ -213,25 +212,25 @@ On the `Select-Object` I separated the code to look nicer and show you all the c
 Old Code:
 
 ```powershell
-    $file | Out-File results.txt
+$file | Out-File results.txt
 
-    Clear-Variable -name file
-    Clear-Variable -Name resultsFile
+Clear-Variable -name file
+Clear-Variable -Name resultsFile
 
-    .\Results.txt
+.\Results.txt
 ```
 
 New Code:
 
 ```powershell
-    # Send all results information to results.txt File.
-    $Message | Out-File "$Path\Results.txt"
+# Send all results information to results.txt File.
+$Message | Out-File "$Path\Results.txt"
 
-    # Clear Variables from memory
-    Clear-Variable -Name Results
+# Clear Variables from memory
+Clear-Variable -Name Results
 
-    # Open Results text file in Notepad
-    Invoke-Item "$Path\Results.txt"
+# Open Results text file in Notepad
+Invoke-Item "$Path\Results.txt"
 ```
 
 Here I changed all the paths to explicitly state where everything is going instead of assuming that PowerShell is in the right directory. I also reduced the `Clear-Variable` command to one time call since I cleaned up the code earlier. If I don't clear this variable then if I run the function again it just adds to this variable and I get two sets of results in one. Finally, I explicitly call `Invoke-Item` to open the Result.txt file with the Path in the call as well.
