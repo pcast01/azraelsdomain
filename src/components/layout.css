@@ -643,7 +643,7 @@ when line numbers are displayed */
  * Add back the container background-color, border-radius, padding, margin
  * and overflow that we removed from <pre>.
  */
- .gatsby-highlight {
+.gatsby-highlight {
   background-color: #2d2d2d; /* Use your prismjs theme color */
   border-radius: 0.3em;
   margin: 0;
@@ -667,7 +667,6 @@ when line numbers are displayed */
   float: left; /* 1 */
   min-width: 100%; /* 2 */
 }
-
 
 /**
  * If you only want to use line numbering

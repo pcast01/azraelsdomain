@@ -10,7 +10,8 @@ date: "2016-12-26"
 look at 1 text file filled with windows path locations and 1 text file that has specific words to search for.</p>
 
 Here is the script:
-`gist:pcast01/1593a0f632fa36765a100f085ea81015`
+
+<!-- `gist:pcast01/1593a0f632fa36765a100f085ea81015` -->
 
 ## Breakdown of script
 
