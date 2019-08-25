@@ -9,8 +9,8 @@ Problem: Use one array and [.reduce() function](https://developer.mozilla.org/en
 
 Rules:
 
-    * Return an object where each property is the name of the an ice cream flavor and each value is an integer that is the total count of that flavor.
-    * Store the returned data in a new iceCreamTotals variable.
+- Return an object where each property is the name of the an ice cream flavor and each value is an integer that is the total count of that flavor.
+- Store the returned data in a new iceCreamTotals variable.
 
 ### Data
 
@@ -75,7 +75,7 @@ How did I arrive at this solution?! I will elaborate below.
 
 So I used [ES6(ECMAScript 6)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_2015_support_in_Mozilla) reduce function which is a dip into [Functional Programming](https://en.wikipedia.org/wiki/Functional_programming) which I have found to be great to work with and expanded my mind coming from a [Procedural Programming](https://en.wikipedia.org/wiki/Procedural_programming) background in programming. Functional Programming is unique and to wrap your brain around is difficult for me. So I came across the 3 functional methods: [reduce, map and filter](https://hackernoon.com/understanding-map-filter-and-reduce-in-javascript-5df1c7eee464) and this helped out to get this problem solved. I have learned so much and I am so grateful to have not given up on javascript because I really thought it was just a pain and a necessary evil in the past.
 
-## Looking for help
+## Looking for Help
 
 So naturally, I googled some ways to try to solve this problem and I came across this web page: [How JavaScript’s Reduce method works, when to use it, and some of the cool things it can do](https://medium.freecodecamp.org/reduce-f47a7da511a9) and it was a life saver in coming up with my solution. My eyes were opened to the many uses of the Reduce function.
 
@@ -141,9 +141,9 @@ const iceCreamTotals = data.reduce((totals, superhero) => {
 
 ```
 
-I was happy knowing that I could solve this problem and hope it will help someone else who might be struggling with a similiar problem.
+I was happy knowing that I could solve this problem and hope it will help someone else who might be struggling with a similar problem.
 
-### Recommended links:
+### Recommended Links
 
 - [VSCode](https://code.visualstudio.com/) for coding in javascript!
 - [Google Chrome](https://www.google.com/chrome/) quick javascript debugging.
