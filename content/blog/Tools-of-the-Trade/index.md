@@ -1,6 +1,6 @@
 ---
 title: "Tools of the trade"
-tags: ["javascript", "powershell", "net", "nodejs", "git", "css", "html", "net"]
+tags: ["javascript", "powershell", "vscode", "nodejs", "git", "css", "html", "net", "react"]
 published: true
 date: "2019-08-25"
 ---
