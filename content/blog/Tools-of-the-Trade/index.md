@@ -16,10 +16,10 @@ date: "2019-08-25"
 
 1. React/Web API
 
-   - Front-End: Javascript - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">Link</a>
-   - Back-End:
-     - Web API - <a href="https://dotnet.microsoft.com/apps/aspnet/apis" target="_blank">Link</a>
-     - SQL Server Database - <a href="hhttps://www.microsoft.com/en-us/sql-server/default.aspx" target="_blank">Link</a>
+- Front-End: Javascript - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">Link</a>
+- Back-End:
+  - Web API - <a href="https://dotnet.microsoft.com/apps/aspnet/apis" target="_blank">Link</a>
+  - SQL Server Database - <a href="hhttps://www.microsoft.com/en-us/sql-server/default.aspx" target="_blank">Link</a>
 
 2. .NET webforms/C#/javascript
 
