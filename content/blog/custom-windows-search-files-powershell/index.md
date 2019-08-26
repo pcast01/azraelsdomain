@@ -6,12 +6,12 @@ date: "2016-12-26"
 ---
 
 <br />
-<p>I recently worked on a project where I was tasked to create a custom search for a client and he wanted a specific search that would
-look at 1 text file filled with windows path locations and 1 text file that has specific words to search for.</p>
+I recently worked on a project where I was tasked to create a custom search for a client and he wanted a specific search that would
+look at 1 text file filled with windows path locations and 1 text file that has specific words to search for.
 
 Here is the script:
 
-<!-- `gist:pcast01/1593a0f632fa36765a100f085ea81015` -->
+`gist:pcast01/1593a0f632fa36765a100f085ea81015`
 
 ## Breakdown of script
 
@@ -113,7 +113,6 @@ I print the results of this in the line "$resultsFile" then I get the count of f
 foreach ($folder in $folders) {
     $files = gci -Path $folder -Recurse _._
     Write-Host "Searching folder: $folder -------------------------"
-        $file = \$file + "\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*`r`nSearching folder: \$folder`r`n**\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***`r`n"
     foreach ($pattern in $patterns) {
         $resultsFile  = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue |
         Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") } |
