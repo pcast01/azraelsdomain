@@ -100,10 +100,10 @@ The other condition is where Name property is -like "_\$pattern_". _ I use the s
 
 I then pipe the results to [Select-Object](http://ss64.com/ps/select-object.html) to get all custom properties:
 
-- Folder - Directory of file
-- Size - Use Format-FileSize function and pass Length of file in bytes.
-- Last Modified Date - LastWriteTime of file.
-- Owner - Use Get-Acl cmdlet and pass it the fullName of the file
+Folder - Directory of file
+Size - Use Format-FileSize function and pass Length of file in bytes.
+Last Modified Date - LastWriteTime of file.
+Owner - Use Get-Acl cmdlet and pass it the fullName of the file
 
 I then pipe those results to [Format-Table -AutoSize](http://ss64.com/ps/format-table.html) and pipe that to [Out-String -Width 4096](https://poshoholic.com/2010/11/11/powershell-quick-tip-creating-wide-tables-with-powershell/) and it will be printed later to the text file.
 
@@ -145,7 +145,7 @@ At the end of the script I clear the two variables: file and resultsFile. Then I
 
 Here are results for 2 locations with 2 search patterns: _excerpte_.jpg and \*.aspx
 
-- so all aspx files and jpg files with excerpte in the title.
+so all aspx files and jpg files with excerpte in the title.
 
 ```powershell
 ---
