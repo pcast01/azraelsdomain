@@ -116,8 +116,11 @@ Write-Host "Searching folder: $folder -------------------------"
 foreach ($pattern in $patterns) {
     $resultsFile  = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue | 
         Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") } | 
-        Select-Object @{Name="Folder";Expression={$_.Directory}},@{Name="FileName";Expression={$*.Name}}, @{Name="Size";Expression={Format-FileSize($_.Length)}}, @{Name="Last Modified Date";Expression=$_.LastWriteTime}}, @{Name="Owner";Expression={(Get-acl $_.FullName).Owner}} | Format-Table -AutoSize _ | Out-String -Width 4096
-    $rNumbers = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue | Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*")}
+        Select-Object @{Name="Folder";Expression={$_.Directory}},@{Name="FileName";Expression={$*.Name}}, 
+        @{Name="Size";Expression={Format-FileSize($_.Length)}}, @{Name="Last Modified Date";Expression=$_.LastWriteTime}}, 
+        @{Name="Owner";Expression={(Get-acl $_.FullName).Owner}} | Format-Table -AutoSize _ | Out-String -Width 4096
+    $rNumbers = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue |
+     Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*")}
     $resultsFile
     $rCount = $rNumbers.Count
     Write-Host "Count: $rCount"
