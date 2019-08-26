@@ -109,25 +109,6 @@ I then pipe those results to [Format-Table -AutoSize](http://ss64.com/ps/format-
 
 I print the results of this in the line `$resultsFile` then I get the count of files from `$rCount = $rNumbers.Count` and then `Write-Host 'Count: $rCount'`
 
-```powershell
-foreach ($folder in $folders) {
-    $files = gci -Path $folder -Recurse *.*
-    Write-Host "Searching folder: $folder -------------------------"
-    foreach ($pattern in $patterns) {
-        $resultsFile  = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue |
-        Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") } |
-        Select-Object @{Name="Folder";Expression={$_.Directory}},@{Name="FileName";Expression={$*.Name}} ,
-        @{Name="Size";Expression={Format-FileSize($_.Length)}}, @{Name="Last Modified Date";Expression={$_.LastWriteTime}},
-        @{Name="Owner";Expression={(Get-acl $_.FullName).Owner}} | Format-Table -AutoSize _ | Out-String -Width 4096
-        $rNumbers = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue | Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") }
-        $resultsFile
-        $rCount = $rNumbers.Count
-        Write-Host "Count: $rCount"
-        $file = $file + "=========== Searching for $pattern ===========`r`n**Number of Files found: $rCount`r`n`r`n" + $resultsFile
-    }
-}
-```
-
 ## Write to file
 
 Next I write all the results for the first Pattern to the \$file variable. After searching all locations I finally pipe all the results to a file in the current directory called results.txt.
