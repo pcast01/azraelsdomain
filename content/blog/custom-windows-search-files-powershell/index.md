@@ -144,4 +144,47 @@ Clear-Variable -Name resultsFile
 
 At the end of the script I clear the two variables: file and resultsFile. Then I open the Results.txt file for review.
 Here are results for 2 locations with 2 search patterns: _excerpte_.jpg and *.aspx
-so all aspx files and jpg files with excerpte in the title.
+
+- so all aspx files and jpg files with excerpte in the title.
+
+```powershell
+********************************************************************
+Searching folder: C:\Temp
+********************************************************************
+=========== Searching for *excerpte*.jpg ===========
+**Number of Files found: 1
+
+
+Folder  FileName                             Size    Last Modified Date   Owner              
+------  --------                             ----    ------------------   -----              
+C:\Temp DoD Pest Management DPHSexcerpte.jpg 5.86 MB 8/26/2016 4:40:11 PM Owner
+
+
+=========== Searching for *.aspx ===========
+**Number of Files found: 2
+
+
+Folder                          FileName    Size    Last Modified Date    Owner              
+------                          --------    ----    ------------------    -----              
+C:\Temp\Test                    Logoff.aspx 4.62 kB 11/1/2016 12:06:41 PM Owner
+C:\Temp\Test Template App\admin Logoff.aspx 4.62 kB 11/1/2016 12:06:41 PM Owner
+
+
+********************************************************************
+Searching folder: C:\Test
+********************************************************************
+=========== Searching for *excerpte*.jpg ===========
+**Number of Files found: 4
+
+
+Folder                       FileName             Size Last Modified Date     Owner              
+------                       --------             ---- ------------------     -----              
+C:\Test                      excerpte1.jpg        0 MB 12/16/2016 11:40:06 AM Owner
+C:\Test                      excerpteTENS.jpg     0 MB 12/16/2016 11:47:11 AM Owner
+C:\Test\level1\Level2\Level3 excerpte12.jpg       0 MB 12/16/2016 11:40:06 AM Owner
+C:\Test\level1\Level2\Level3 excerpteThirteen.jpg 0 MB 12/16/2016 11:47:11 AM Owner
+
+
+=========== Searching for *.aspx ===========
+**Number of Files found: 0
+```
