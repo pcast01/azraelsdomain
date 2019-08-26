@@ -39,14 +39,14 @@ This is the opening screen for the script which shows the Powershell Version fro
 
 ```powershell
 $ver = $psversiontable.psversion
-Write-Host "PowerShell version: \$ver"
+Write-Host "PowerShell version: $ver"
 Write-Host "Script Mission: takes a list of locations to search and looks at another "
 Write-Host " list that has specific words to match and compilates a list"
 Write-Host " with information about matches found in the filename."
 Write-Host "---------------------------------------------------------------------"
 Write-Host " Select Folder where Locations and Patterns text files are located when prompted"
 
-\$startScript = Read-Host -Prompt 'Hit enter to continue'
+$startScript = Read-Host -Prompt 'Hit enter to continue'
 ```
 
 ## Browse for folder Dialog box
@@ -58,20 +58,20 @@ where the locations and patterns text files are located. Then it checks if both 
 
 ```powershell
 $application = New-Object -ComObject Shell.Application
-$path = (\$application.BrowseForFolder(0, 'Select root folder of new WebSite', 0)).Self.Path
+$path = ($application.BrowseForFolder(0, 'Select root folder of new WebSite', 0)).Self.Path
 
 if([string]::IsNullOrEmpty(\$path))
 {
-Write-Host "Exiting script..."
-exit
+        Write-Host "Exiting script..."
+        exit
 }
 
 cd $path
 $locPath = $path + "\locations.txt"
 $patternPath = $path + "\patterns.txt"
 if(![System.IO.File]::Exists($locPath)){
-Write-Host "\* Locations text file does not exist in \$path. Exiting..." -ForegroundColor Red
-Exit
+        Write-Host "* Locations text file does not exist in $path. Exiting..." -ForegroundColor Red
+        Exit
 }
 ```
 
@@ -81,7 +81,7 @@ The function is used when creating a new object for [Select-Object](http://ss64.
 we will pass it the Length property which is the number of bytes for the file.
 
 ```powershell
-@{Name="Size";Expression={Format-FileSize(\$\_.Length)}}
+@{Name="Size";Expression={Format-FileSize($_.Length)}}
 ```
 
 ## The major part of the script
@@ -90,7 +90,7 @@ I perform 2 [foreach](http://ss64.com/ps/foreach.html) loops starting with the l
 thru all the patterns to search for in the first location and all its subfolders using this line:
 
 ```powershell
-$files = gci -Path $folder -Recurse _._"
+$files = gci -Path $folder -Recurse *.*
 ```
 
 To search all recursively down the folders we must get all the files using [Get-ChildItem](http://ss64.com/ps/get-childitem.html) and using [Where-Object](http://ss64.com/ps/where-object.html).
@@ -107,23 +107,23 @@ Owner - Use Get-Acl cmdlet and pass it the fullName of the file
 
 I then pipe those results to [Format-Table -AutoSize](http://ss64.com/ps/format-table.html) and pipe that to [Out-String -Width 4096](https://poshoholic.com/2010/11/11/powershell-quick-tip-creating-wide-tables-with-powershell/) and it will be printed later to the text file.
 
-I print the results of this in the line "$resultsFile" then I get the count of files from "$rCount = $rNumbers.Count" and then "Write-Host 'Count: $rCount'"
+I print the results of this in the line `$resultsFile` then I get the count of files from `$rCount = $rNumbers.Count` and then `Write-Host 'Count: $rCount'`
 
 ```powershell
 foreach ($folder in $folders) {
-    $files = gci -Path $folder -Recurse _._
+    $files = gci -Path $folder -Recurse *.*
     Write-Host "Searching folder: $folder -------------------------"
     foreach ($pattern in $patterns) {
         $resultsFile  = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue |
         Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") } |
         Select-Object @{Name="Folder";Expression={$_.Directory}},@{Name="FileName";Expression={$*.Name}} ,
-        @{Name="Size";Expression={Format-FileSize(\$_.Length)}}, @{Name="Last Modified Date";Expression={\$_.LastWriteTime}},
-        @{Name="Owner";Expression={(Get-acl $\_.FullName).Owner}} | Format-Table -AutoSize _ | Out-String -Width 4096
-        $rNumbers = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue | Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "\*$pattern\*") }
+        @{Name="Size";Expression={Format-FileSize($_.Length)}}, @{Name="Last Modified Date";Expression={$_.LastWriteTime}},
+        @{Name="Owner";Expression={(Get-acl $_.FullName).Owner}} | Format-Table -AutoSize _ | Out-String -Width 4096
+        $rNumbers = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue | Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") }
         $resultsFile
         $rCount = $rNumbers.Count
         Write-Host "Count: $rCount"
-        $file = \$file + "=========== Searching for \\\$pattern ===========`r`n\*\*Number of Files found: $rCount`r`n`r`n" + $resultsFile
+        $file = $file + "=========== Searching for $pattern ===========`r`n**Number of Files found: $rCount`r`n`r`n" + $resultsFile
     }
 }
 ```
@@ -143,7 +143,7 @@ Clear-Variable -Name resultsFile
 
 At the end of the script I clear the two variables: file and resultsFile. Then I open the Results.txt file for review.
 
-Here are results for 2 locations with 2 search patterns: _excerpte_.jpg and \*.aspx
+Here are results for 2 locations with 2 search patterns: _excerpte_.jpg and *.aspx
 
 so all aspx files and jpg files with excerpte in the title.
 
@@ -155,7 +155,7 @@ Searching folder: C:\Temp
 ---
 
 =========== Searching for _excerpte_.jpg ===========
-\*\*Number of Files found: 1
+**Number of Files found: 1
 
 Folder FileName Size Last Modified Date Owner
 
@@ -164,7 +164,7 @@ Folder FileName Size Last Modified Date Owner
 C:\Temp DoD Pest Management DPHSexcerpte.jpg 5.86 MB 8/26/2016 4:40:11 PM Owner
 
 =========== Searching for \*.aspx ===========
-\*\*Number of Files found: 2
+**Number of Files found: 2
 
 Folder FileName Size Last Modified Date Owner
 
@@ -179,8 +179,8 @@ Searching folder: C:\Test
 
 ---
 
-=========== Searching for _excerpte_.jpg ===========
-\*\*Number of Files found: 4
+=========== Searching for *excerpte*.jpg ===========
+**Number of Files found: 4
 
 Folder FileName Size Last Modified Date Owner
 
@@ -192,5 +192,5 @@ C:\Test\level1\Level2\Level3 excerpte12.jpg 0 MB 12/16/2016 11:40:06 AM Owner
 C:\Test\level1\Level2\Level3 excerpteThirteen.jpg 0 MB 12/16/2016 11:47:11 AM Owner
 
 =========== Searching for \*.aspx ===========
-\*\*Number of Files found: 0
+**Number of Files found: 0
 ```
