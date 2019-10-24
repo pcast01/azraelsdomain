@@ -4,6 +4,7 @@ import Bio from "./Bio"
 import "./sidebar.css"
 import SocialLinks from "./SocialLinks"
 import TechTags from "./TechTags"
+import DarkModeToggle from "../DarkModeToggle"
 
 const Sidebar = () => {
   return (
@@ -68,6 +69,7 @@ const Sidebar = () => {
                 <span className="text-dark d-block py-1">Archive</span>
               </Link>
             </div>
+            <DarkModeToggle />
             <div className="tech-tags mt-4">
               <TechTags
                 labels={data.site.siteMetadata.labels}
