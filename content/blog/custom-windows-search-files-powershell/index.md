@@ -94,9 +94,9 @@ $files = gci -Path $folder -Recurse *.*
 ```
 
 To search all recursively down the folders we must get all the files using [Get-ChildItem](http://ss64.com/ps/get-childitem.html) and using [Where-Object](http://ss64.com/ps/where-object.html).
-I filter all the files out by using `$_.PSIsContainer -eq $false`.  If we wanted folders then this would be equal to True instead of false
+I filter all the files out by using $_.PSIsContainer -eq $false. \* If we wanted folders then this would be equal to True instead of false
 
-The other condition is where Name property is -like "_\$pattern_". I use the star(_) character as a wildcard on both sides so we can find the pattern anywhere in the title.
+The other condition is where Name property is -like "_\$pattern_". _ I use the star(_) character as a wildcard on both sides so we can find the pattern anywhere in the title.
 
 I then pipe the results to [Select-Object](http://ss64.com/ps/select-object.html) to get all custom properties:
 
@@ -111,21 +111,20 @@ I print the results of this in the line `$resultsFile` then I get the count of f
 
 ```powershell
 foreach ($folder in $folders) {
-$files = gci -Path $folder -Recurse *.*
-Write-Host "Searching folder: $folder -------------------------"
-foreach ($pattern in $patterns) {
-    $resultsFile  = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue | 
-        Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") } | 
-        Select-Object @{Name="Folder";Expression={$_.Directory}},@{Name="FileName";Expression={$*.Name}}, 
-        @{Name="Size";Expression={Format-FileSize($_.Length)}}, @{Name="Last Modified Date";Expression=$_.LastWriteTime}}, 
+    $files = gci -Path $folder -Recurse *.*
+    Write-Host "Searching folder: $folder -------------------------"
+    foreach ($pattern in $patterns) {
+        $resultsFile  = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue |
+        Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") } |
+        Select-Object @{Name="Folder";Expression={$_.Directory}},@{Name="FileName";Expression={$*.Name}} ,
+        @{Name="Size";Expression={Format-FileSize($_.Length)}}, @{Name="Last Modified Date";Expression={$_.LastWriteTime}},
         @{Name="Owner";Expression={(Get-acl $_.FullName).Owner}} | Format-Table -AutoSize _ | Out-String -Width 4096
-    $rNumbers = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue |
-     Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*")}
-    $resultsFile
-    $rCount = $rNumbers.Count
-    Write-Host "Count: $rCount"
-    $file = $file + "=========== Searching for $pattern ===========`r`n**Number of Files found: $rCount`r`n`r`n" + $resultsFile
-}
+        $rNumbers = Get-ChildItem -Recurse -Force $folder -ErrorAction SilentlyContinue | Where-Object { ($_.PSIsContainer -eq $false) -and ( $_.Name -like "*$pattern*") }
+        $resultsFile
+        $rCount = $rNumbers.Count
+        Write-Host "Count: $rCount"
+        $file = $file + "=========== Searching for $pattern ===========`r`n**Number of Files found: $rCount`r`n`r`n" + $resultsFile
+    }
 }
 ```
 
@@ -143,48 +142,55 @@ Clear-Variable -Name resultsFile
 ```
 
 At the end of the script I clear the two variables: file and resultsFile. Then I open the Results.txt file for review.
+
 Here are results for 2 locations with 2 search patterns: _excerpte_.jpg and *.aspx
 
-- so all aspx files and jpg files with excerpte in the title.
+so all aspx files and jpg files with excerpte in the title.
 
 ```powershell
-********************************************************************
+---
+
 Searching folder: C:\Temp
-********************************************************************
-=========== Searching for *excerpte*.jpg ===========
+
+---
+
+=========== Searching for _excerpte_.jpg ===========
 **Number of Files found: 1
 
+Folder FileName Size Last Modified Date Owner
 
-Folder  FileName                             Size    Last Modified Date   Owner              
-------  --------                             ----    ------------------   -----              
+---
+
 C:\Temp DoD Pest Management DPHSexcerpte.jpg 5.86 MB 8/26/2016 4:40:11 PM Owner
 
-
-=========== Searching for *.aspx ===========
+=========== Searching for \*.aspx ===========
 **Number of Files found: 2
 
+Folder FileName Size Last Modified Date Owner
 
-Folder                          FileName    Size    Last Modified Date    Owner              
-------                          --------    ----    ------------------    -----              
-C:\Temp\Test                    Logoff.aspx 4.62 kB 11/1/2016 12:06:41 PM Owner
+---
+
+C:\Temp\Test Logoff.aspx 4.62 kB 11/1/2016 12:06:41 PM Owner
 C:\Temp\Test Template App\admin Logoff.aspx 4.62 kB 11/1/2016 12:06:41 PM Owner
 
+---
 
-********************************************************************
 Searching folder: C:\Test
-********************************************************************
+
+---
+
 =========== Searching for *excerpte*.jpg ===========
 **Number of Files found: 4
 
+Folder FileName Size Last Modified Date Owner
 
-Folder                       FileName             Size Last Modified Date     Owner              
-------                       --------             ---- ------------------     -----              
-C:\Test                      excerpte1.jpg        0 MB 12/16/2016 11:40:06 AM Owner
-C:\Test                      excerpteTENS.jpg     0 MB 12/16/2016 11:47:11 AM Owner
-C:\Test\level1\Level2\Level3 excerpte12.jpg       0 MB 12/16/2016 11:40:06 AM Owner
+---
+
+C:\Test excerpte1.jpg 0 MB 12/16/2016 11:40:06 AM Owner
+C:\Test excerpteTENS.jpg 0 MB 12/16/2016 11:47:11 AM Owner
+C:\Test\level1\Level2\Level3 excerpte12.jpg 0 MB 12/16/2016 11:40:06 AM Owner
 C:\Test\level1\Level2\Level3 excerpteThirteen.jpg 0 MB 12/16/2016 11:47:11 AM Owner
 
-
-=========== Searching for *.aspx ===========
+=========== Searching for \*.aspx ===========
 **Number of Files found: 0
 ```
