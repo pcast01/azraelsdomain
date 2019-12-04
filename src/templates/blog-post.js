@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { remarkForm } from "gatsby-tinacms-remark"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import "./blog-post.css"
@@ -8,7 +9,8 @@ import Sidebar from "../components/sidebar/Sidebar"
 import TechTag from "../components/tags/TechTag"
 import CustomShareBlock from "../components/CustomShareBlock"
 
-const BlogPost = props => {
+function BlogPostTemplate(props) {
+  console.log("props", props)
   const post = props.data.markdownRemark
   const labels = props.data.site.siteMetadata.labels
   const siteName = props.data.site.siteMetadata.title
@@ -66,9 +68,10 @@ const BlogPost = props => {
     </Layout>
   )
 }
+export default remarkForm(BlogPostTemplate, { queryName: "myContent" })
 
 export const query = graphql`
-  query($slug: String!) {
+  query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
         url
@@ -82,15 +85,17 @@ export const query = graphql`
         }
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    myContent: markdownRemark(fields: { slug: { eq: $slug } }) {
+      id
       html
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
         tags
       }
+      fileRelativePath
+      rawFrontmatter
+      rawMarkdownBody
     }
   }
 `
-
-export default BlogPost
